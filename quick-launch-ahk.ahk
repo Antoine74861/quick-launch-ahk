@@ -1,6 +1,6 @@
 #SingleInstance
 
-dev := true
+dev := false
 
 ^Numpad5:: {
     LocalAppData := EnvGet("LocalAppData")
@@ -13,22 +13,25 @@ dev := true
         { name: "firefox.exe",   command: A_ProgramFiles "\Mozilla Firefox\firefox.exe" },
         { name: "Discord.exe",   command: LocalAppData "\Discord\Update.exe --processStart Discord.exe" },
         { name: "olk.exe",       command: "olk" },
-        { name: "Notepad.exe",   command: "Notepad.exe" }
+        { name: "Notepad.exe",   command: "notepad" }
     ]
 
-
     for app in apps {
+        if dev {
+            MsgBox "Chemin de " app.name ":`n" app.command
+        }
+
         if !ProcessExist(app.name) {
             if dev
-                MsgBox app.name " is not running. Launching..."
+                MsgBox app.name " n'est pas en cours d'exécution. Lancement..."
             try Run app.command
             if dev
-                MsgBox app.name " launch attempted."
+                MsgBox app.name " → tentative de lancement."
         } else if dev {
-            MsgBox app.name " is already running."
+            MsgBox app.name " est déjà en cours d'exécution."
         }
     }
 
     if dev
-        MsgBox "Script completed."
+        MsgBox "Script terminé."
 }
