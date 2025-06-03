@@ -1,6 +1,6 @@
 # Mini App Launcher (AHK v2)
 
-Mini AutoHotkey v2 script to quickly launch a predefined list of applications using `Ctrl + Numpad5`.
+Mini AutoHotkey v2 script to quickly launch a predefined list of applications using `Ctrl + Numpad5`, or automatically on launch if `autorun := true`.
 
 > [!WARNING]
 > When compiling the script, the value of `A_ProgramFiles` may differ depending on the compilation mode:

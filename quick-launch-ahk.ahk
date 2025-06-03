@@ -1,9 +1,12 @@
 #SingleInstance
 
-dev := false
+dev := false    ; msgbox logs
+autorun := true ; call exec_app() on run
 
-^Numpad5:: {
-    LocalAppData := EnvGet("LocalAppData")
+LocalAppData := EnvGet("LocalAppData")
+
+exec_app() {
+    global dev, LocalAppData
 
     apps := [
         { name: "pycharm64.exe", command: A_ProgramFiles "\JetBrains\PyCharm 2024.3.5\bin\pycharm64.exe" },
@@ -35,3 +38,14 @@ dev := false
     if dev
         MsgBox "Script terminé."
 }
+
+#HotIf !autorun
+^Numpad5::exec_app()
+#HotIf
+
+if autorun {
+    exec_app()
+    ExitApp
+}
+
+
